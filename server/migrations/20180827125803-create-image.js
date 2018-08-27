@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      redditId: {
+      reddit_id: {
         type: Sequelize.STRING
       },
       title: {
