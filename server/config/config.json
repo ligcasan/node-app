@@ -1,0 +1,25 @@
+{
+  "development": {
+    "username": "cullective_dev",
+    "password": "password",
+    "database": "cullective_dev",
+    "host": "127.0.0.1",
+    "port": "5432",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "cullective",
+    "password": null,
+    "database": "cullective",
+    "host": "127.0.0.1",
+    "port": "5432",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
