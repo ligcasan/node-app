@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     image.hasMany(models.user_decision, {
       foreignKey: 'image_id',
       as: 'images',
-    });
+    });  
   };
   return image;
 };

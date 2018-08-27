@@ -1,39 +1,33 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('user_decisions', {
+    return queryInterface.createTable('images', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      user_id: {
+      redditId: {
         type: Sequelize.STRING
       },
-      status: {
+      title: {
         type: Sequelize.STRING
       },
-      created_at: {
+      url: {
+        type: Sequelize.STRING
+      },
+      createdAt: {
         allowNull: false,
         type: Sequelize.DATE
       },
-      updated_at: {
+      updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      },
-      image_id: {
-        type: Sequelize.INTEGER,
-        onDelete: 'CASCADE',
-        references: {
-          model: 'images',
-          key: 'id',
-          as: 'image_id',
-        },
-      },
+      }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('user_decisions');
+    return queryInterface.dropTable('images');
   }
 };
