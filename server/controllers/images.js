@@ -12,16 +12,9 @@ module.exports = {
       .then(obj => res.status(201).send(obj))
       .catch(error => res.status(400).send(error));
   },
-  populate_with_reddit(req, res) {
-    const reddit = new snoowrap({
-      userAgent: '',
-      clientId: '',
-      clientSecret: '',
-      username: '',
-      password: ''
-    });
 
-    const fetchSize = 10;
+  populate_with_reddit(req, res) {
+    const fetchSize = 100;
 
     reddit.getSubreddit('pics').getNew({limit: fetchSize})
     .then(
@@ -40,5 +33,32 @@ module.exports = {
       }
     )
     .catch(error => res.status(400).send(error));
+  },
+
+  fetch_todays_entry(req, res) {
+    const today = new Date().setHours(0,0,0,0);
+    image_row.findAll({
+      where: {
+        createdAt: {
+	  gt: today
+	} 
+      }
+    })
+    .then(
+      (data) => {
+	var obj = {'message': 'Successful.'};
+	obj.data = {};
+        data.forEach((row) => {
+	  obj.data[row['dataValues']['id']] = {
+	    reddit_id: row['dataValues']['reddit_id'],
+	    title: row['dataValues']['title'],
+	    url: row['dataValues']['url']
+	  };
+	  console.log(obj);
+	});
+
+        return res.status(200).send(obj);
+      }
+    );
   }
 };
